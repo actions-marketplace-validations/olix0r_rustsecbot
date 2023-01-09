@@ -21,7 +21,7 @@ jobs:
     steps:
       - run: rustup component add clippy rustfmt
       - uses: olix0r/cargo-action-fmt@ee1ef42932e44794821dab57ef1bf7a73df8b21f
-      - uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b
+      - uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c
       - run: cargo fetch --locked
       - run: cargo clippy --all-targets --frozen --message-format=json | cargo-action-fmt
       - run: cargo fmt -- --check
@@ -37,7 +37,7 @@ jobs:
     # Prevent sudden announcement of a new advisory from failing Ci.
     continue-on-error: ${{ matrix.checks == 'advisories' }}
     steps:
-    - uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b
+    - uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c
     - uses: EmbarkStudios/cargo-deny-action@30ecad1d5873c1cc2cad10a33637371ca094768b
       with:
         command: check bans licenses sources
@@ -49,7 +49,7 @@ jobs:
       image: docker://docker.io/rust:1.60.0
     steps:
       - uses: olix0r/cargo-action-fmt@ee1ef42932e44794821dab57ef1bf7a73df8b21f
-      - uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b
+      - uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c
       - run: cargo fetch --locked
       - run: cargo test --no-run --frozen --message-format=json | cargo-action-fmt
       - run: cargo test --frozen
@@ -59,7 +59,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 2
     steps:
-      - uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b
+      - uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c
       - run: |
           ex=0
 
